@@ -14,6 +14,7 @@ if (arch === 'arm') {
 	var archspec = require('child_process').execSync(
     'dpkg --print-architecture').toString();
 	if (archspec.replace('\n', '') !== 'armhf') {
+		console.log(archspec.replace('\n', ''))
 		throw new Error('Unsupported platform/architecture: ' + `${platform}-${arch}`);
 	} 
 }
