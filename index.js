@@ -5,7 +5,20 @@ const path = require('path');
 
 const verifyFile = require('./lib/verify-file');
 
-const platform = os.platform() + '-' + os.arch();
+let platform = os.platform();
+const arch = os.arch(); 
+
+
+
+if (arch === 'arm') {
+	var archspec = require('child_process').execSync(
+    'dpkg --print-architecture').toString();
+	if (archspec.replace('\n', '') !== 'armhf') {
+		throw new Error('Unsupported platform/architecture: ' + `${platform}-${arch}`);
+	} 
+}
+
+platform = `${platform}-${arch}`;
 
 const packageName = '@ffprobe-installer/' + platform;
 
