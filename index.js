@@ -8,13 +8,11 @@ const verifyFile = require('./lib/verify-file');
 let platform = os.platform();
 const arch = os.arch(); 
 
-
-
 if (arch === 'arm') {
 	var archspec = require('child_process').execSync(
     'dpkg --print-architecture').toString();
 	if (archspec.replace('\n', '') !== 'armhf') {
-		console.log(archspec.replace('\n', ''))
+		console.log('archspec: ', archspec.replace('\n', ''))
 		throw new Error('Unsupported platform/architecture: ' + `${platform}-${arch}`);
 	} 
 }
