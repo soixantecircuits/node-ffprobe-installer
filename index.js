@@ -6,7 +6,7 @@ const path = require('path');
 const verifyFile = require('./lib/verify-file');
 
 let platform = os.platform();
-const arch = os.arch(); 
+let arch = os.arch(); 
 
 if (arch === 'arm') {
 	var archspec = require('child_process').execSync(
@@ -14,7 +14,9 @@ if (arch === 'arm') {
 	if (archspec.replace('\n', '') !== 'armhf') {
 		console.log('archspec: ', archspec.replace('\n', ''))
 		throw new Error('Unsupported platform/architecture: ' + `${platform}-${arch}`);
-	} 
+	} else {
+		arch = archspec
+	}
 }
 
 platform = `${platform}-${arch}`;
