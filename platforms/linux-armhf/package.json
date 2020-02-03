@@ -1,7 +1,7 @@
 {
 	"name": "linux-armhf-bin",
-	"version": "4.2.1",
-	"description": "Arm raspberry 32 bits FFmpeg binary used by ffprobe-installer",
+	"version": "4.2.2",
+	"description": "ARM raspberry 32 bits FFmpeg binary used by ffprobe-installer",
 	"homepage": "https://evermeet.cx/ffmpeg/",
 	"scripts": {
 		"test": "file ffprobe | grep -qF \"ARM\"",
@@ -21,7 +21,7 @@
 		"linux"
 	],
 	"cpu": [
-		"x32"
+		"arm"
 	],
 	"author": "gabrielstuff <gabriel@soixantecircuits.fr>",
 	"license": "LGPL-2.1",
