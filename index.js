@@ -11,11 +11,11 @@ let arch = os.arch();
 if (arch === 'arm') {
 	var archspec = require('child_process').execSync(
     'dpkg --print-architecture').toString();
-	if (archspec.replace('\n', '') !== 'armhf') {
-		console.log('archspec: ', archspec.replace('\n', ''))
+	if (archspec.replace(/(\r\n|\n|\r)/gm, "") !== 'armhf') {
+		console.log('archspec: ', archspec.replace(/(\r\n|\n|\r)/gm, ""))
 		throw new Error('Unsupported platform/architecture: ' + `${platform}-${arch}`);
 	} else {
-		arch = archspec
+		arch = archspec.replace(/(\r\n|\n|\r)/gm, "");
 	}
 }
 
@@ -25,6 +25,8 @@ let packageName = ''
 packageName = `@ffprobe-installer/${platform}`;
 if (arch === 'armhf') {
 	packageName = 'linux-armhf-bin'
+} else {
+	console.log(arch)
 }
 
 if (!require('./package.json').optionalDependencies[packageName]) {
