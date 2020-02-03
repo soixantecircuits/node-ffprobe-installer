@@ -35,17 +35,28 @@ if (!require('./package.json').optionalDependencies[packageName]) {
 
 const binary = os.platform() === 'win32' ? 'ffprobe.exe' : 'ffprobe';
 
-const npm3Path = path.resolve(__dirname, '..', platform);
-const npm2Path = path.resolve(__dirname, 'node_modules', '@ffprobe-installer', platform);
+if (arch === 'armhf') {
+	var npm3Path = path.resolve(__dirname, '..', platform);
+	var npm2Path = path.resolve(__dirname, 'node_modules', '@ffprobe-installer', 'ffprobe', 'node_modules', packageName);
+	
+	var npm3Binary = path.join(npm3Path, binary);
+	var npm2Binary = path.join(npm2Path, binary);
+	
+	var npm3Package = path.join(npm3Path, 'package.json');
+	var npm2Package = path.join(npm2Path, 'package.json');
+} else {
+	var npm3Path = path.resolve(__dirname, '..', platform);
+	var npm2Path = path.resolve(__dirname, 'node_modules', '@ffprobe-installer', platform);
+	
+	var npm3Binary = path.join(npm3Path, binary);
+	var npm2Binary = path.join(npm2Path, binary);
+	
+	var npm3Package = path.join(npm3Path, 'package.json');
+	var npm2Package = path.join(npm2Path, 'package.json');
+}
 
-const npm3Binary = path.join(npm3Path, binary);
-const npm2Binary = path.join(npm2Path, binary);
-
-const npm3Package = path.join(npm3Path, 'package.json');
-const npm2Package = path.join(npm2Path, 'package.json');
-
-let ffprobePath;
-let packageJson;
+var ffprobePath;
+var packageJson;
 
 if (verifyFile(npm3Binary)) {
 	ffprobePath = npm3Binary;
