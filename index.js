@@ -21,7 +21,11 @@ if (arch === 'arm') {
 
 platform = `${platform}-${arch}`;
 
-const packageName = '@ffprobe-installer/' + platform;
+let packageName = ''
+packageName = `@ffprobe-installer/${platform}`;
+if (arch === 'armhf') {
+	packageName = linux-armhf-bin
+}
 
 if (!require('./package.json').optionalDependencies[packageName]) {
 	throw new Error('Unsupported platform/architecture: ' + platform);
