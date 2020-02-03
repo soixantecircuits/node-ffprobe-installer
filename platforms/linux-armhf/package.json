@@ -1,10 +1,10 @@
 {
-	"name": "@ffprobe-installer/linux-armhf",
+	"name": "linux-armhf-bin",
 	"version": "4.2.1",
 	"description": "Arm raspberry 32 bits FFmpeg binary used by ffprobe-installer",
 	"homepage": "https://evermeet.cx/ffmpeg/",
 	"scripts": {
-		"test": "file ffprobe | grep -qF \"Mach-O\"",
+		"test": "file ffprobe | grep -qF \"ARM\"",
 		"prepublish": "npm test",
 		"postinstall": "chmod u+x ffprobe",
 		"upload": "npm publish --access public"
@@ -12,16 +12,18 @@
 	"keywords": [
 		"ffprobe",
 		"binary",
-		"darwin",
-		"x64"
+		"linux",
+		"x32",
+		"raspberry",
+		"armhf"
 	],
 	"os": [
-		"darwin"
+		"linux"
 	],
 	"cpu": [
-		"x64"
+		"x32"
 	],
-	"author": "Oliver Sayers <talk@savagecore.eu>",
+	"author": "gabrielstuff <gabriel@soixantecircuits.fr>",
 	"license": "LGPL-2.1",
-	"ffprobe": "93939-g819ed1df94"
+	"ffprobe": "7914786ac6c031190d854a523a38b2718b28b78a"
 }
